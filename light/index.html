@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tostato — Toasted Bread & Coffee Bar (chiaro)</title>
+<meta name="description" content="Tostato — caffetteria e toast bar. Espresso, panini tostati, brioche e dolci fatti ogni giorno.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="progress"></div>
+
+<nav id="navbar">
+  <button class="logo" data-goto="top">TOST<span>ATO</span></button>
+  <button class="nav-burger" id="nav-burger" aria-label="Apri menu" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-links">
+    <li><button class="navlink" data-goto="chisiamo">Chi siamo</button></li>
+    <li><button class="navlink" data-goto="menu">Menu</button></li>
+    <li><button class="navlink" data-goto="galleria">Galleria</button></li>
+    <li><button class="navlink" data-goto="contatti">Contatti</button></li>
+  </ul>
+</nav>
+
+<header id="top">
+  <div class="hero-bg" style="background-image:url('../assets/img/bancone-tostato.jpg')" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span> Aperto oggi · 6:30 – 19:00</div>
+    <h1 class="brand">TOST<span class="accent">ATO</span></h1>
+    <p class="hero-sub">Toasted Bread &amp; Coffee Bar — espresso, panini tostati e brioche sfornate ogni mattina.</p>
+    <div class="hero-riga">
+      <button class="cta" data-goto="menu">Guarda il menu</button>
+      <button class="cta cta-ghost" data-goto="contatti">Dove siamo</button>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>espresso</span><span class="n">·</span><span>toast</span><span class="n">·</span><span>brioche</span><span class="n">·</span><span>cappuccino</span><span class="n">·</span><span>panini</span><span class="n">·</span><span>dolci</span><span class="n">·</span>
+    <span>espresso</span><span class="n">·</span><span>toast</span><span class="n">·</span><span>brioche</span><span class="n">·</span><span>cappuccino</span><span class="n">·</span><span>panini</span><span class="n">·</span><span>dolci</span><span class="n">·</span>
+  </div>
+</div>
+
+<section id="chisiamo">
+  <div class="chisiamo-wrap">
+    <div class="reveal">
+      <div class="eyebrow">chi siamo</div>
+      <h2>Il tostato<br>giusto, ogni giorno</h2>
+      <p>Da Tostato il pane si tosta al momento: al banco trovi panini caldi, focacce farcite e brioche appena
+      sfornate, accompagnati da un espresso preparato come si deve.</p>
+      <p>Un locale piccolo e curato, tra mattoni a vista e luci calde, pensato per una colazione veloce o
+      una pausa pranzo senza fretta.</p>
+      <div class="citazione">«Il posto giusto per un caffè e un toast fatto bene.»</div>
+      <div class="citazione-fonte">— i nostri clienti</div>
+    </div>
+    <div class="cornice reveal">
+      <img src="../assets/img/bancone-tostato.jpg" alt="Il bancone di Tostato con vetrina panini e parete a mattoni a vista">
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="centro reveal">
+    <div class="eyebrow">dal banco</div>
+    <h2>Il menu</h2>
+    <p class="sotto-titolo">Caffetteria, panini tostati e dolci — preparati ogni giorno.</p>
+  </div>
+
+  <div class="menu-grid reveal">
+
+    <div class="menu-cat">
+      <h3>Caffetteria</h3>
+      <ul>
+        <li><span>Espresso</span><i></i><b>1,20 €</b></li>
+        <li><span>Espresso corretto</span><i></i><b>1,50 €</b></li>
+        <li><span>Cappuccino</span><i></i><b>1,60 €</b></li>
+        <li><span>Cappuccino/Ginseng</span><i></i><b>1,70 €</b></li>
+        <li><span>Latte macchiato</span><i></i><b>1,80 €</b></li>
+        <li><span>Marocchino</span><i></i><b>1,80 €</b></li>
+        <li><span>Cioccolata calda</span><i></i><b>2,50 €</b></li>
+        <li><span>Tè caldo</span><i></i><b>1,80 €</b></li>
+      </ul>
+    </div>
+
+    <div class="menu-cat">
+      <h3>Panini &amp; Toast</h3>
+      <ul>
+        <li><span>Toast prosciutto e formaggio</span><i></i><b>3,50 €</b></li>
+        <li><span>Panino Caprese</span><i></i><b>4,00 €</b></li>
+        <li><span>Panino Crudo e stracciatella</span><i></i><b>4,80 €</b></li>
+        <li><span>Tramezzino tonno</span><i></i><b>3,00 €</b></li>
+        <li><span>Focaccia farcita</span><i></i><b>3,80 €</b></li>
+        <li><span>Club sandwich</span><i></i><b>5,00 €</b></li>
+      </ul>
+    </div>
+
+    <div class="menu-cat">
+      <h3>Brioche &amp; Dolci</h3>
+      <ul>
+        <li><span>Brioche vuota</span><i></i><b>1,20 €</b></li>
+        <li><span>Brioche crema/cioccolato</span><i></i><b>1,50 €</b></li>
+        <li><span>Cornetto integrale</span><i></i><b>1,50 €</b></li>
+        <li><span>Muffin</span><i></i><b>2,00 €</b></li>
+        <li><span>Fetta di torta</span><i></i><b>2,50 €</b></li>
+        <li><span>Biscotti misti</span><i></i><b>1,80 €</b></li>
+      </ul>
+    </div>
+
+    <div class="menu-cat">
+      <h3>Bevande</h3>
+      <ul>
+        <li><span>Succo di frutta</span><i></i><b>2,50 €</b></li>
+        <li><span>Spremuta d'arancia</span><i></i><b>3,50 €</b></li>
+        <li><span>Acqua naturale/frizzante</span><i></i><b>1,00 €</b></li>
+        <li><span>Bibite in lattina</span><i></i><b>2,50 €</b></li>
+      </ul>
+    </div>
+
+  </div>
+  <p class="menu-note reveal">Prezzi indicativi — il menu completo è disponibile al banco.</p>
+</section>
+
+<section id="galleria">
+  <div class="centro reveal">
+    <div class="eyebrow">uno sguardo dentro</div>
+    <h2>Galleria</h2>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-tile tile-photo">
+      <div class="tile-bg tile-1" style="background-image:url('../assets/img/bancone-tostato.jpg')"></div>
+      <span>Il bancone</span>
+    </div>
+    <div class="gallery-tile">
+      <div class="tile-bg tile-2"></div>
+      <span>Toast &amp; panini</span>
+    </div>
+    <div class="gallery-tile">
+      <div class="tile-bg tile-3"></div>
+      <span>Brioche del mattino</span>
+    </div>
+    <div class="gallery-tile">
+      <div class="tile-bg tile-4"></div>
+      <span>Angolo caffè</span>
+    </div>
+  </div>
+</section>
+
+<section id="contatti">
+  <div class="contatti-wrap reveal">
+    <div class="eyebrow">vieni a trovarci</div>
+    <h2>Orari &amp; Indirizzo</h2>
+    <div class="contatti-grid">
+      <div class="contatti-info">
+        <div class="info-riga">
+          <b>Orari</b>
+          <span>Lun – Sab · 6:30 – 19:00<br>Domenica chiuso</span>
+        </div>
+        <div class="info-riga">
+          <b>Indirizzo</b>
+          <span>Via del Tostato 1, Genova</span>
+        </div>
+        <div class="info-riga">
+          <b>Telefono</b>
+          <span><a href="tel:+390000000000">+39 000 000 0000</a></span>
+        </div>
+        <div class="info-riga">
+          <b>Social</b>
+          <span><a href="#">Instagram</a> · <a href="#">Facebook</a></span>
+        </div>
+      </div>
+      <div class="mappa-placeholder" aria-hidden="true">
+        <span>Mappa</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-wrap">
+    <span>TOST<b>ATO</b> — Toasted Bread &amp; Coffee Bar</span>
+    <span>&copy; 2026</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
