@@ -122,11 +122,23 @@ loginOverlay.addEventListener('click', (e) => {
   if (e.target === loginOverlay) loginOverlay.classList.remove('aperto');
 });
 
+const SEL_EDITABILI = ['.menu-panel li span', '.info-editabile'];
+
 function attivaManager() {
   document.body.classList.add('manager');
+  SEL_EDITABILI.forEach(sel => {
+    document.querySelectorAll(sel).forEach(el => {
+      el.setAttribute('contenteditable', 'true');
+      el.classList.add('editabile');
+    });
+  });
 }
 function disattivaManager() {
   document.body.classList.remove('manager');
+  document.querySelectorAll('[contenteditable]').forEach(el => {
+    el.removeAttribute('contenteditable');
+    el.classList.remove('editabile');
+  });
 }
 function tentaLogin() {
   if (loginPass.value === MANAGER_PASSWORD) {
@@ -167,27 +179,9 @@ document.getElementById('prezzo-annulla').addEventListener('click', chiudiPrezzo
 prezzoOverlay.addEventListener('click', (e) => { if (e.target === prezzoOverlay) chiudiPrezzo(); });
 prezzoInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') document.getElementById('prezzo-salva').click(); });
 
-// gestione foto della galleria (cambia / elimina / aggiungi)
-const galleryGrid = document.querySelector('#galleria .gallery-grid');
+// gestione foto (cambia / elimina / aggiungi) — riusata per Galleria e Lo spazio
 const imgInput = document.getElementById('img-input');
 let bgTarget = null;
-
-galleryGrid.addEventListener('click', (e) => {
-  const cambiaBtn = e.target.closest('.g-cambia');
-  const eliminaBtn = e.target.closest('.g-elimina');
-  if (cambiaBtn) {
-    e.preventDefault(); e.stopPropagation();
-    bgTarget = cambiaBtn.closest('.gallery-tile').querySelector('.tile-bg');
-    imgInput.click();
-    return;
-  }
-  if (eliminaBtn) {
-    e.preventDefault(); e.stopPropagation();
-    if (confirm('Sei sicuro di voler eliminare questa foto?')) {
-      eliminaBtn.closest('.gallery-tile').remove();
-    }
-  }
-});
 imgInput.addEventListener('change', () => {
   const file = imgInput.files[0];
   if (!file || !bgTarget) return;
@@ -198,26 +192,51 @@ imgInput.addEventListener('change', () => {
   bgTarget = null;
 });
 
-const gAggiungi = document.getElementById('g-aggiungi');
-const gNuovaInput = document.getElementById('g-nuova-input');
-gAggiungi.addEventListener('click', () => gNuovaInput.click());
-gNuovaInput.addEventListener('change', () => {
-  const file = gNuovaInput.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    const nome = prompt('Didascalia della foto (facoltativo):') || '';
-    const tile = document.createElement('div');
-    tile.className = 'gallery-tile tile-photo tilt';
-    tile.innerHTML = `<div class="tile-bg" style="background-image:url('${reader.result}')"></div>`
-      + `<span>${nome}</span>`
-      + `<div class="g-manager"><button type="button" class="g-cambia" aria-label="Cambia foto">✏️</button><button type="button" class="g-elimina" aria-label="Elimina foto">🗑️</button></div>`;
-    galleryGrid.appendChild(tile);
-    bindTilt(tile);
-  };
-  reader.readAsDataURL(file);
-  gNuovaInput.value = '';
-});
+function setupPhotoGrid(gridSelector, addBtnId, addInputId) {
+  const grid = document.querySelector(gridSelector);
+  if (!grid) return;
+
+  grid.addEventListener('click', (e) => {
+    const cambiaBtn = e.target.closest('.g-cambia');
+    const eliminaBtn = e.target.closest('.g-elimina');
+    if (cambiaBtn) {
+      e.preventDefault(); e.stopPropagation();
+      bgTarget = cambiaBtn.closest('.gallery-tile').querySelector('.tile-bg');
+      imgInput.click();
+      return;
+    }
+    if (eliminaBtn) {
+      e.preventDefault(); e.stopPropagation();
+      if (confirm('Sei sicuro di voler eliminare questa foto?')) {
+        eliminaBtn.closest('.gallery-tile').remove();
+      }
+    }
+  });
+
+  const addBtn = document.getElementById(addBtnId);
+  const addInput = document.getElementById(addInputId);
+  if (!addBtn || !addInput) return;
+  addBtn.addEventListener('click', () => addInput.click());
+  addInput.addEventListener('change', () => {
+    const file = addInput.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const nome = prompt('Didascalia della foto (facoltativo):') || '';
+      const tile = document.createElement('div');
+      tile.className = 'gallery-tile tile-photo tilt';
+      tile.innerHTML = `<div class="tile-bg" style="background-image:url('${reader.result}')"></div>`
+        + `<span>${nome}</span>`
+        + `<div class="g-manager"><button type="button" class="g-cambia" aria-label="Cambia foto">✏️</button><button type="button" class="g-elimina" aria-label="Elimina foto">🗑️</button></div>`;
+      grid.appendChild(tile);
+      bindTilt(tile);
+    };
+    reader.readAsDataURL(file);
+    addInput.value = '';
+  });
+}
+setupPhotoGrid('#galleria .gallery-grid', 'g-aggiungi', 'g-nuova-input');
+setupPhotoGrid('#spazio .spazio-grid', 's-aggiungi', 's-nuova-input');
 
 // salva: genera il file HTML aggiornato e lo scarica
 document.getElementById('mb-salva').addEventListener('click', () => {
@@ -229,6 +248,10 @@ document.getElementById('mb-salva').addEventListener('click', () => {
   const pg = clone.querySelector('#progress'); if (pg) pg.style.width = '0';
   clone.querySelectorAll('.reveal').forEach(el => el.classList.remove('in'));
   clone.querySelectorAll('.gallery-tile').forEach(el => { el.style.transform = ''; });
+  clone.querySelectorAll('[contenteditable]').forEach(el => {
+    el.removeAttribute('contenteditable');
+    el.classList.remove('editabile');
+  });
 
   const contenuto = '<!DOCTYPE html>\n' + clone.outerHTML;
   const blob = new Blob([contenuto], { type: 'text/html' });
