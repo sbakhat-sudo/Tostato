@@ -102,6 +102,14 @@ button{font-family:inherit; cursor:pointer; border:none; background:none; color:
 }
 .navlink:hover{color:var(--gold-light);}
 .navlink:hover::after{right:0;}
+.navlink-theme{
+  border:1px solid rgba(217,164,65,.4);
+  border-radius:999px;
+  padding:.35rem .9rem;
+  font-size:.85rem;
+}
+.navlink-theme::after{display:none;}
+.navlink-theme:hover{background:rgba(217,164,65,.12); border-color:var(--gold);}
 
 @media(min-width:820px){
   .nav-burger{display:none;}
