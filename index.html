@@ -7,7 +7,7 @@
 <meta name="description" content="Tostato — caffetteria e toast bar. Espresso, panini tostati, brioche e dolci fatti ogni giorno.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -23,7 +23,6 @@
     <li><button class="navlink" data-goto="menu">Menu</button></li>
     <li><button class="navlink" data-goto="galleria">Galleria</button></li>
     <li><button class="navlink" data-goto="contatti">Contatti</button></li>
-    <li><a class="navlink navlink-theme" href="light/index.html">Versione chiara</a></li>
   </ul>
 </nav>
 
@@ -32,13 +31,16 @@
   <div class="hero-overlay" aria-hidden="true"></div>
   <div class="hero-content">
     <div class="hero-badge"><span class="dot"></span> Aperto oggi · 6:30 – 19:00</div>
-    <h1 class="brand">TOST<span class="accent">ATO</span></h1>
+    <h1 class="brand">
+      <span class="mask"><span class="line">TOST<em>ATO</em></span></span>
+    </h1>
     <p class="hero-sub">Toasted Bread &amp; Coffee Bar — espresso, panini tostati e brioche sfornate ogni mattina.</p>
     <div class="hero-riga">
       <button class="cta" data-goto="menu">Guarda il menu</button>
       <button class="cta cta-ghost" data-goto="contatti">Dove siamo</button>
     </div>
   </div>
+  <div class="scroll-cue" aria-hidden="true"><span></span></div>
 </header>
 
 <div class="marquee" aria-hidden="true">
@@ -73,56 +75,57 @@
     <p class="sotto-titolo">Caffetteria, panini tostati e dolci — preparati ogni giorno.</p>
   </div>
 
-  <div class="menu-grid reveal">
-
-    <div class="menu-cat">
-      <h3>Caffetteria</h3>
-      <ul>
-        <li><span>Espresso</span><i></i><b>1,20 €</b></li>
-        <li><span>Espresso corretto</span><i></i><b>1,50 €</b></li>
-        <li><span>Cappuccino</span><i></i><b>1,60 €</b></li>
-        <li><span>Cappuccino/Ginseng</span><i></i><b>1,70 €</b></li>
-        <li><span>Latte macchiato</span><i></i><b>1,80 €</b></li>
-        <li><span>Marocchino</span><i></i><b>1,80 €</b></li>
-        <li><span>Cioccolata calda</span><i></i><b>2,50 €</b></li>
-        <li><span>Tè caldo</span><i></i><b>1,80 €</b></li>
-      </ul>
+  <div class="menu-panel-wrap reveal">
+    <div class="menu-tabs" role="tablist">
+      <button class="menu-tab active" data-tab="caffetteria" role="tab" aria-selected="true">Caffetteria</button>
+      <button class="menu-tab" data-tab="panini" role="tab" aria-selected="false">Panini &amp; Toast</button>
+      <button class="menu-tab" data-tab="dolci" role="tab" aria-selected="false">Brioche &amp; Dolci</button>
+      <button class="menu-tab" data-tab="bevande" role="tab" aria-selected="false">Bevande</button>
+      <span class="menu-tab-glider" aria-hidden="true"></span>
     </div>
 
-    <div class="menu-cat">
-      <h3>Panini &amp; Toast</h3>
-      <ul>
-        <li><span>Toast prosciutto e formaggio</span><i></i><b>3,50 €</b></li>
-        <li><span>Panino Caprese</span><i></i><b>4,00 €</b></li>
-        <li><span>Panino Crudo e stracciatella</span><i></i><b>4,80 €</b></li>
-        <li><span>Tramezzino tonno</span><i></i><b>3,00 €</b></li>
-        <li><span>Focaccia farcita</span><i></i><b>3,80 €</b></li>
-        <li><span>Club sandwich</span><i></i><b>5,00 €</b></li>
-      </ul>
+    <div class="menu-panels">
+      <div class="menu-panel active" data-panel="caffetteria">
+        <ul>
+          <li><span>Espresso</span><i></i><b>1,20 €</b></li>
+          <li><span>Espresso corretto</span><i></i><b>1,50 €</b></li>
+          <li><span>Cappuccino</span><i></i><b>1,60 €</b></li>
+          <li><span>Cappuccino/Ginseng</span><i></i><b>1,70 €</b></li>
+          <li><span>Latte macchiato</span><i></i><b>1,80 €</b></li>
+          <li><span>Marocchino</span><i></i><b>1,80 €</b></li>
+          <li><span>Cioccolata calda</span><i></i><b>2,50 €</b></li>
+          <li><span>Tè caldo</span><i></i><b>1,80 €</b></li>
+        </ul>
+      </div>
+      <div class="menu-panel" data-panel="panini">
+        <ul>
+          <li><span>Toast prosciutto e formaggio</span><i></i><b>3,50 €</b></li>
+          <li><span>Panino Caprese</span><i></i><b>4,00 €</b></li>
+          <li><span>Panino Crudo e stracciatella</span><i></i><b>4,80 €</b></li>
+          <li><span>Tramezzino tonno</span><i></i><b>3,00 €</b></li>
+          <li><span>Focaccia farcita</span><i></i><b>3,80 €</b></li>
+          <li><span>Club sandwich</span><i></i><b>5,00 €</b></li>
+        </ul>
+      </div>
+      <div class="menu-panel" data-panel="dolci">
+        <ul>
+          <li><span>Brioche vuota</span><i></i><b>1,20 €</b></li>
+          <li><span>Brioche crema/cioccolato</span><i></i><b>1,50 €</b></li>
+          <li><span>Cornetto integrale</span><i></i><b>1,50 €</b></li>
+          <li><span>Muffin</span><i></i><b>2,00 €</b></li>
+          <li><span>Fetta di torta</span><i></i><b>2,50 €</b></li>
+          <li><span>Biscotti misti</span><i></i><b>1,80 €</b></li>
+        </ul>
+      </div>
+      <div class="menu-panel" data-panel="bevande">
+        <ul>
+          <li><span>Succo di frutta</span><i></i><b>2,50 €</b></li>
+          <li><span>Spremuta d'arancia</span><i></i><b>3,50 €</b></li>
+          <li><span>Acqua naturale/frizzante</span><i></i><b>1,00 €</b></li>
+          <li><span>Bibite in lattina</span><i></i><b>2,50 €</b></li>
+        </ul>
+      </div>
     </div>
-
-    <div class="menu-cat">
-      <h3>Brioche &amp; Dolci</h3>
-      <ul>
-        <li><span>Brioche vuota</span><i></i><b>1,20 €</b></li>
-        <li><span>Brioche crema/cioccolato</span><i></i><b>1,50 €</b></li>
-        <li><span>Cornetto integrale</span><i></i><b>1,50 €</b></li>
-        <li><span>Muffin</span><i></i><b>2,00 €</b></li>
-        <li><span>Fetta di torta</span><i></i><b>2,50 €</b></li>
-        <li><span>Biscotti misti</span><i></i><b>1,80 €</b></li>
-      </ul>
-    </div>
-
-    <div class="menu-cat">
-      <h3>Bevande</h3>
-      <ul>
-        <li><span>Succo di frutta</span><i></i><b>2,50 €</b></li>
-        <li><span>Spremuta d'arancia</span><i></i><b>3,50 €</b></li>
-        <li><span>Acqua naturale/frizzante</span><i></i><b>1,00 €</b></li>
-        <li><span>Bibite in lattina</span><i></i><b>2,50 €</b></li>
-      </ul>
-    </div>
-
   </div>
   <p class="menu-note reveal">Prezzi indicativi — il menu completo è disponibile al banco.</p>
 </section>
@@ -133,19 +136,19 @@
     <h2>Galleria</h2>
   </div>
   <div class="gallery-grid reveal">
-    <div class="gallery-tile">
+    <div class="gallery-tile tile-photo tilt">
       <div class="tile-bg tile-1" style="background-image:url('assets/img/bancone-tostato.jpg')"></div>
       <span>Il bancone</span>
     </div>
-    <div class="gallery-tile">
+    <div class="gallery-tile tilt">
       <div class="tile-bg tile-2"></div>
       <span>Toast &amp; panini</span>
     </div>
-    <div class="gallery-tile">
+    <div class="gallery-tile tilt">
       <div class="tile-bg tile-3"></div>
       <span>Brioche del mattino</span>
     </div>
-    <div class="gallery-tile">
+    <div class="gallery-tile tilt">
       <div class="tile-bg tile-4"></div>
       <span>Angolo caffè</span>
     </div>
