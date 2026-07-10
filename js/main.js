@@ -88,7 +88,7 @@ window.addEventListener('resize', () => moveGlider(document.querySelector('.menu
 if (tabs.length) requestAnimationFrame(() => moveGlider(document.querySelector('.menu-tab.active')));
 
 // Gallery tilt-on-hover
-document.querySelectorAll('.gallery-tile.tilt').forEach(tile => {
+function bindTilt(tile) {
   const strength = 10;
   tile.addEventListener('mousemove', (e) => {
     const rect = tile.getBoundingClientRect();
@@ -99,4 +99,143 @@ document.querySelectorAll('.gallery-tile.tilt').forEach(tile => {
   tile.addEventListener('mouseleave', () => {
     tile.style.transform = '';
   });
+}
+document.querySelectorAll('.gallery-tile.tilt').forEach(bindTilt);
+
+// ---------- Area manager ----------
+// ⚠️ cambia questa password prima di pubblicare
+const MANAGER_PASSWORD = 'tostato2026';
+
+const loginOverlay = document.getElementById('login-overlay');
+const loginPass = document.getElementById('login-pass');
+
+function apriLogin() {
+  loginOverlay.classList.add('aperto');
+  loginPass.value = '';
+  setTimeout(() => loginPass.focus(), 100);
+}
+document.getElementById('apri-login').addEventListener('click', apriLogin);
+document.getElementById('login-annulla').addEventListener('click', () => {
+  loginOverlay.classList.remove('aperto');
+});
+loginOverlay.addEventListener('click', (e) => {
+  if (e.target === loginOverlay) loginOverlay.classList.remove('aperto');
+});
+
+function attivaManager() {
+  document.body.classList.add('manager');
+}
+function disattivaManager() {
+  document.body.classList.remove('manager');
+}
+function tentaLogin() {
+  if (loginPass.value === MANAGER_PASSWORD) {
+    loginOverlay.classList.remove('aperto');
+    attivaManager();
+  } else {
+    loginPass.classList.add('errore');
+    setTimeout(() => loginPass.classList.remove('errore'), 450);
+  }
+}
+document.getElementById('login-entra').addEventListener('click', tentaLogin);
+loginPass.addEventListener('keydown', (e) => { if (e.key === 'Enter') tentaLogin(); });
+document.getElementById('mb-esci').addEventListener('click', disattivaManager);
+
+// modifica rapida dei prezzi del menu
+const prezzoOverlay = document.getElementById('prezzo-overlay');
+const prezzoInput = document.getElementById('prezzo-input');
+let prezzoTarget = null;
+
+function chiudiPrezzo() {
+  prezzoOverlay.classList.remove('aperto');
+  prezzoTarget = null;
+}
+document.getElementById('menu').addEventListener('click', (e) => {
+  const btn = e.target.closest('.prezzo-edit');
+  if (!btn) return;
+  prezzoTarget = btn.previousElementSibling;
+  prezzoInput.value = prezzoTarget.textContent.trim();
+  prezzoOverlay.classList.add('aperto');
+  setTimeout(() => { prezzoInput.focus(); prezzoInput.select(); }, 100);
+});
+document.getElementById('prezzo-salva').addEventListener('click', () => {
+  const valore = prezzoInput.value.trim();
+  if (prezzoTarget && valore) prezzoTarget.textContent = valore;
+  chiudiPrezzo();
+});
+document.getElementById('prezzo-annulla').addEventListener('click', chiudiPrezzo);
+prezzoOverlay.addEventListener('click', (e) => { if (e.target === prezzoOverlay) chiudiPrezzo(); });
+prezzoInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') document.getElementById('prezzo-salva').click(); });
+
+// gestione foto della galleria (cambia / elimina / aggiungi)
+const galleryGrid = document.querySelector('#galleria .gallery-grid');
+const imgInput = document.getElementById('img-input');
+let bgTarget = null;
+
+galleryGrid.addEventListener('click', (e) => {
+  const cambiaBtn = e.target.closest('.g-cambia');
+  const eliminaBtn = e.target.closest('.g-elimina');
+  if (cambiaBtn) {
+    e.preventDefault(); e.stopPropagation();
+    bgTarget = cambiaBtn.closest('.gallery-tile').querySelector('.tile-bg');
+    imgInput.click();
+    return;
+  }
+  if (eliminaBtn) {
+    e.preventDefault(); e.stopPropagation();
+    if (confirm('Sei sicuro di voler eliminare questa foto?')) {
+      eliminaBtn.closest('.gallery-tile').remove();
+    }
+  }
+});
+imgInput.addEventListener('change', () => {
+  const file = imgInput.files[0];
+  if (!file || !bgTarget) return;
+  const reader = new FileReader();
+  reader.onload = () => { bgTarget.style.backgroundImage = `url('${reader.result}')`; };
+  reader.readAsDataURL(file);
+  imgInput.value = '';
+  bgTarget = null;
+});
+
+const gAggiungi = document.getElementById('g-aggiungi');
+const gNuovaInput = document.getElementById('g-nuova-input');
+gAggiungi.addEventListener('click', () => gNuovaInput.click());
+gNuovaInput.addEventListener('change', () => {
+  const file = gNuovaInput.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    const nome = prompt('Didascalia della foto (facoltativo):') || '';
+    const tile = document.createElement('div');
+    tile.className = 'gallery-tile tile-photo tilt';
+    tile.innerHTML = `<div class="tile-bg" style="background-image:url('${reader.result}')"></div>`
+      + `<span>${nome}</span>`
+      + `<div class="g-manager"><button type="button" class="g-cambia" aria-label="Cambia foto">✏️</button><button type="button" class="g-elimina" aria-label="Elimina foto">🗑️</button></div>`;
+    galleryGrid.appendChild(tile);
+    bindTilt(tile);
+  };
+  reader.readAsDataURL(file);
+  gNuovaInput.value = '';
+});
+
+// salva: genera il file HTML aggiornato e lo scarica
+document.getElementById('mb-salva').addEventListener('click', () => {
+  const clone = document.documentElement.cloneNode(true);
+  clone.querySelector('body').classList.remove('manager');
+  const ov = clone.querySelector('#login-overlay'); if (ov) ov.classList.remove('aperto');
+  const po = clone.querySelector('#prezzo-overlay'); if (po) po.classList.remove('aperto');
+  const nv = clone.querySelector('#navbar'); if (nv) nv.classList.remove('scrolled');
+  const pg = clone.querySelector('#progress'); if (pg) pg.style.width = '0';
+  clone.querySelectorAll('.reveal').forEach(el => el.classList.remove('in'));
+  clone.querySelectorAll('.gallery-tile').forEach(el => { el.style.transform = ''; });
+
+  const contenuto = '<!DOCTYPE html>\n' + clone.outerHTML;
+  const blob = new Blob([contenuto], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'tostato.html';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 });

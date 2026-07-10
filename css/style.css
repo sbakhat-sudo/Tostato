@@ -423,6 +423,105 @@ footer{background:var(--navy-2); color:var(--muted); padding:1.7rem 1.75rem;}
   font-size:.85rem; color:rgba(251,248,242,.6);
 }
 .footer-wrap b{color:var(--gold);}
+.footer-manager{
+  background:none; border:none; color:inherit; font-size:.85rem;
+  cursor:pointer; text-decoration:underline; text-underline-offset:2px;
+  transition:color .2s ease;
+}
+.footer-manager:hover{color:var(--gold-light);}
+
+/* ---------- AREA MANAGER ---------- */
+.prezzo-edit{
+  display:none; background:none; border:none; cursor:pointer;
+  font-size:.8rem; margin-left:.4rem; opacity:.7; transition:transform .2s ease, opacity .2s ease;
+}
+.prezzo-edit:hover{opacity:1; transform:scale(1.15);}
+body.manager .prezzo-edit{display:inline-flex; align-items:center;}
+
+.btn-aggiungi-foto{
+  display:none; margin:0 auto 1rem; background:var(--navy); color:var(--cream);
+  border:none; border-radius:999px; padding:.7rem 1.4rem; font-weight:600;
+  cursor:pointer; transition:transform .25s var(--ease), background .25s ease;
+}
+.btn-aggiungi-foto:hover{transform:translateY(-2px); background:#2a3358;}
+body.manager .btn-aggiungi-foto{display:block;}
+
+.g-manager{
+  position:absolute; top:.7rem; right:.7rem; z-index:3;
+  display:none; gap:.5rem;
+}
+body.manager .g-manager{display:flex;}
+body.manager .gallery-tile span{max-width:calc(100% - 5rem);}
+.g-cambia, .g-elimina{
+  background:rgba(23,28,48,.65); border:1px solid rgba(255,255,255,.4);
+  color:var(--cream); border-radius:999px; width:28px; height:28px; font-size:.8rem;
+  display:flex; align-items:center; justify-content:center; cursor:pointer;
+  backdrop-filter:blur(3px); transition:border-color .2s ease, transform .2s ease;
+}
+.g-cambia:hover{border-color:var(--gold-light); transform:scale(1.08);}
+.g-elimina:hover{border-color:var(--brick-light); transform:scale(1.08);}
+
+.footer-manager, #login-overlay, #prezzo-overlay, .manager-bar{font-family:'Jost', sans-serif;}
+#login-overlay, #prezzo-overlay{
+  position:fixed; inset:0; z-index:300;
+  background:rgba(15,12,8,.72);
+  display:none; align-items:center; justify-content:center; padding:1.5rem;
+}
+#login-overlay.aperto, #prezzo-overlay.aperto{display:flex;}
+.login-card, .prezzo-card{
+  background:var(--white); border-radius:var(--radius);
+  padding:2.2rem 2rem; width:min(380px, 92vw);
+  box-shadow:0 24px 60px rgba(0,0,0,.35);
+}
+.login-card h3, .prezzo-card h3{font-size:1.3rem; color:var(--navy); margin-bottom:.4rem;}
+.login-card p{color:var(--muted); font-size:.9rem; margin-bottom:1.2rem;}
+.login-card input, .prezzo-card input{
+  width:100%; background:var(--cream-2); border:1px solid var(--line);
+  border-radius:10px; padding:.8rem 1rem; font-size:1rem; color:var(--ink);
+  margin-top:1rem;
+}
+.login-card input:focus, .prezzo-card input:focus{outline:none; border-color:var(--gold);}
+.login-card input.errore{border-color:var(--brick); animation:scuoti .4s ease;}
+@keyframes scuoti{
+  0%,100%{transform:translateX(0);} 25%{transform:translateX(-6px);}
+  75%{transform:translateX(6px);}
+}
+.login-azioni, .prezzo-azioni{display:flex; gap:.7rem; margin-top:1.4rem;}
+.login-annulla, #login-annulla, #prezzo-annulla{
+  flex:1; background:var(--cream-2); color:var(--ink); border:1px solid var(--line);
+  border-radius:999px; padding:.7rem 1rem; cursor:pointer; font-weight:600;
+}
+.login-entra, #login-entra, #prezzo-salva{
+  flex:1; background:var(--navy); color:var(--cream); border:none;
+  border-radius:999px; padding:.7rem 1rem; cursor:pointer; font-weight:600;
+}
+.login-entra:hover, #login-entra:hover, #prezzo-salva:hover{background:#2a3358;}
+
+.manager-bar{
+  position:fixed; left:50%; bottom:1.2rem; z-index:250;
+  transform:translateX(-50%) translateY(120px);
+  display:none; align-items:center; gap:.9rem;
+  background:var(--navy); color:var(--cream);
+  padding:.8rem 1.2rem; border-radius:999px;
+  box-shadow:0 16px 40px rgba(0,0,0,.3);
+  transition:transform .35s var(--ease);
+  max-width:94vw;
+}
+body.manager .manager-bar{display:flex; transform:translateX(-50%) translateY(0);}
+.manager-bar .mb-info{font-size:.78rem; color:rgba(251,248,242,.75); white-space:nowrap;}
+.manager-bar .mb-info b{color:var(--gold-light);}
+.manager-bar button{
+  border:none; cursor:pointer; padding:.55rem 1rem; border-radius:999px;
+  font-weight:600; font-size:.85rem; white-space:nowrap;
+}
+.mb-salva{background:var(--gold); color:var(--navy);}
+.mb-salva:hover{background:var(--gold-light);}
+.mb-esci{background:rgba(255,255,255,.12); color:var(--cream);}
+.mb-esci:hover{background:rgba(255,255,255,.2);}
+@media(max-width:700px){
+  .manager-bar{flex-wrap:wrap; justify-content:center; text-align:center;}
+  .manager-bar .mb-info{display:none;}
+}
 
 /* ---------- ACCESSIBILITY / FOCUS ---------- */
 a:focus-visible, button:focus-visible{
