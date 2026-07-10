@@ -122,7 +122,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none; color:
 }
 
 /* ---------- HERO ---------- */
-#chisiamo, #menu, #galleria, #contatti{scroll-margin-top:70px;}
+#chisiamo, #menu, #galleria, #spazio, #contatti{scroll-margin-top:70px;}
 
 header#top{
   position:relative;
@@ -250,6 +250,15 @@ header#top{
 .gallery-grid.in .gallery-tile:nth-child(4){animation-delay:.23s;}
 .gallery-grid.in .gallery-tile:nth-child(5){animation-delay:.29s;}
 .gallery-grid.in .gallery-tile:nth-child(6){animation-delay:.35s;}
+
+.spazio-grid.in .gallery-tile{
+  opacity:0; transform:translateY(20px); filter:blur(6px);
+  animation:tileIn .7s var(--ease) forwards;
+}
+.spazio-grid.in .gallery-tile:nth-child(1){animation-delay:.05s;}
+.spazio-grid.in .gallery-tile:nth-child(2){animation-delay:.13s;}
+.spazio-grid.in .gallery-tile:nth-child(3){animation-delay:.21s;}
+.spazio-grid.in .gallery-tile:nth-child(4){animation-delay:.29s;}
 @keyframes tileIn{to{opacity:1; transform:none; filter:blur(0);}}
 
 /* ---------- CHI SIAMO ---------- */
@@ -363,6 +372,17 @@ header#top{
 .gallery-tile:hover span{transform:translateY(-4px) translateZ(20px);}
 .gallery-tile.tile-photo{color:var(--cream);}
 .gallery-tile.tile-photo::after{background:linear-gradient(180deg, transparent 40%, rgba(18,23,42,.62));}
+
+/* ---------- SPAZIO ---------- */
+#spazio{background:var(--cream-2); padding:6rem 1.75rem;}
+#spazio .centro{max-width:var(--maxw); margin:0 auto;}
+.spazio-grid{
+  max-width:var(--maxw); margin:2.5rem auto 0; display:grid; gap:1.1rem;
+  grid-template-columns:repeat(2, 1fr);
+}
+@media(min-width:700px){
+  .spazio-grid{grid-template-columns:repeat(4, 1fr);}
+}
 
 /* ---------- CONTATTI ---------- */
 #contatti{background:var(--white); color:var(--ink); padding:6rem 1.75rem; border-top:1px solid var(--line);}
