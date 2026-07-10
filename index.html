@@ -223,22 +223,28 @@
     <h2>Lo spazio</h2>
     <p class="sotto-titolo">Una sala colorata, un angolo con gli sgabelli, il bancone a vista — un posto pensato per fermarsi.</p>
   </div>
+  <button type="button" class="btn-aggiungi-foto" id="s-aggiungi">+ Aggiungi nuova foto</button>
+  <input type="file" id="s-nuova-input" accept="image/*" style="display:none">
   <div class="spazio-grid reveal">
     <div class="gallery-tile tile-photo tilt">
       <div class="tile-bg" style="background-image:url('assets/img/sala-colorata.jpg')"></div>
       <span>La sala principale</span>
+    <div class="g-manager"><button type="button" class="g-cambia" aria-label="Cambia foto">✏️</button><button type="button" class="g-elimina" aria-label="Elimina foto">🗑️</button></div>
     </div>
     <div class="gallery-tile tile-photo tilt">
       <div class="tile-bg" style="background-image:url('assets/img/angolo-sgabelli.jpg')"></div>
       <span>L'angolo con gli sgabelli</span>
+    <div class="g-manager"><button type="button" class="g-cambia" aria-label="Cambia foto">✏️</button><button type="button" class="g-elimina" aria-label="Elimina foto">🗑️</button></div>
     </div>
     <div class="gallery-tile tile-photo tilt">
       <div class="tile-bg" style="background-image:url('assets/img/bancone-dettaglio.jpg')"></div>
       <span>Il bancone</span>
+    <div class="g-manager"><button type="button" class="g-cambia" aria-label="Cambia foto">✏️</button><button type="button" class="g-elimina" aria-label="Elimina foto">🗑️</button></div>
     </div>
     <div class="gallery-tile tile-photo tilt">
       <div class="tile-bg" style="background-image:url('assets/img/ingresso-vista-strada.jpg')"></div>
       <span>L'ingresso</span>
+    <div class="g-manager"><button type="button" class="g-cambia" aria-label="Cambia foto">✏️</button><button type="button" class="g-elimina" aria-label="Elimina foto">🗑️</button></div>
     </div>
   </div>
 </section>
@@ -251,15 +257,15 @@
       <div class="contatti-info">
         <div class="info-riga">
           <b>Orari</b>
-          <span>Lun – Sab · 6:30 – 19:00<br>Domenica chiuso</span>
+          <span class="info-editabile">Lun – Sab · 6:30 – 19:00<br>Domenica chiuso</span>
         </div>
         <div class="info-riga">
           <b>Indirizzo</b>
-          <span><a href="https://www.google.com/maps/place/Tostato/@44.4135339,8.9263496,18z/data=!4m6!3m5!1s0x12d343963bec288f:0x76df906b1a8119ec!8m2!3d44.413532!4d8.9276371!16s%2Fg%2F11yk_g61ht" target="_blank" rel="noopener">Via delle Fontane 36/r, Genova</a></span>
+          <span><a href="https://www.google.com/maps/place/Tostato/@44.4135339,8.9263496,18z/data=!4m6!3m5!1s0x12d343963bec288f:0x76df906b1a8119ec!8m2!3d44.413532!4d8.9276371!16s%2Fg%2F11yk_g61ht" target="_blank" rel="noopener" class="info-editabile">Via delle Fontane 36/r, Genova</a></span>
         </div>
         <div class="info-riga">
           <b>Telefono</b>
-          <span><a href="tel:+390104554350">010 455 4350</a></span>
+          <span><a href="tel:+390104554350" class="info-editabile">010 455 4350</a></span>
         </div>
         <div class="info-riga">
           <b>Social</b>

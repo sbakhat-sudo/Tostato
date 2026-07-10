@@ -461,6 +461,16 @@ body.manager .gallery-tile span{max-width:calc(100% - 5rem);}
 .g-cambia:hover{border-color:var(--gold-light); transform:scale(1.08);}
 .g-elimina:hover{border-color:var(--brick-light); transform:scale(1.08);}
 
+body.manager .editabile{
+  outline:1.5px dashed rgba(201,145,31,.6); outline-offset:3px;
+  cursor:text; border-radius:4px;
+  transition:outline-color .2s ease, background .2s ease;
+}
+body.manager .editabile:hover{outline-color:var(--gold);}
+body.manager .editabile:focus{
+  outline:2px solid var(--gold); background:rgba(201,145,31,.08);
+}
+
 .footer-manager, #login-overlay, #prezzo-overlay, .manager-bar{font-family:'Jost', sans-serif;}
 #login-overlay, #prezzo-overlay{
   position:fixed; inset:0; z-index:300;
