@@ -293,12 +293,15 @@ header#top{
 .menu-panel-wrap{max-width:640px; margin:3rem auto 0;}
 .menu-tabs{
   position:relative;
-  display:flex; flex-wrap:wrap; gap:.4rem; justify-content:center;
+  display:flex; flex-wrap:nowrap; gap:.4rem; justify-content:flex-start;
   background:var(--white); border:1px solid var(--line); border-radius:999px;
   padding:.4rem; margin-bottom:2.2rem;
+  overflow-x:auto; -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
 }
+.menu-tabs::-webkit-scrollbar{display:none;}
 .menu-tab{
-  position:relative; z-index:1;
+  position:relative; z-index:1; flex:none;
   padding:.6rem 1.1rem; border-radius:999px;
   font-size:.9rem; font-weight:500; color:var(--muted);
   transition:color .3s ease;
@@ -310,6 +313,9 @@ header#top{
   background:var(--navy); border-radius:999px;
   transition:transform .4s var(--ease), width .4s var(--ease);
   z-index:0;
+}
+@media(min-width:600px){
+  .menu-tabs{justify-content:center; overflow-x:visible;}
 }
 .menu-panel{display:none;}
 .menu-panel.active{display:block; animation:panelIn .5s var(--ease);}

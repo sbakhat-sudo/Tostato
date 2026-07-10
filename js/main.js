@@ -81,6 +81,7 @@ function activateTab(tab) {
   tab.setAttribute('aria-selected', 'true');
   document.querySelector(`.menu-panel[data-panel="${tab.dataset.tab}"]`)?.classList.add('active');
   moveGlider(tab);
+  tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
 }
 
 tabs.forEach(tab => tab.addEventListener('click', () => activateTab(tab)));
