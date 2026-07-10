@@ -244,16 +244,10 @@ header#top{
   opacity:0; transform:translateY(20px); filter:blur(6px);
   animation:tileIn .7s var(--ease) forwards;
 }
-.gallery-grid.in .gallery-tile:nth-child(1){animation-delay:.05s;}
-.gallery-grid.in .gallery-tile:nth-child(2){animation-delay:.11s;}
-.gallery-grid.in .gallery-tile:nth-child(3){animation-delay:.17s;}
-.gallery-grid.in .gallery-tile:nth-child(4){animation-delay:.23s;}
-.gallery-grid.in .gallery-tile:nth-child(5){animation-delay:.29s;}
-.gallery-grid.in .gallery-tile:nth-child(6){animation-delay:.35s;}
-.gallery-grid.in .gallery-tile:nth-child(7){animation-delay:.41s;}
-.gallery-grid.in .gallery-tile:nth-child(8){animation-delay:.47s;}
-.gallery-grid.in .gallery-tile:nth-child(9){animation-delay:.53s;}
-.gallery-grid.in .gallery-tile:nth-child(10){animation-delay:.59s;}
+.gallery-grid.in .gallery-tile:nth-child(4n+1){animation-delay:.05s;}
+.gallery-grid.in .gallery-tile:nth-child(4n+2){animation-delay:.13s;}
+.gallery-grid.in .gallery-tile:nth-child(4n+3){animation-delay:.21s;}
+.gallery-grid.in .gallery-tile:nth-child(4n+4){animation-delay:.29s;}
 
 .spazio-grid.in .gallery-tile{
   opacity:0; transform:translateY(20px); filter:blur(6px);
