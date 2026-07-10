@@ -66,6 +66,7 @@ button{font-family:inherit; cursor:pointer; border:none; background:none; color:
 }
 .logo{
   display:flex; align-items:center;
+  background:var(--navy); border-radius:50%; padding:3px;
   transition:opacity .2s ease;
 }
 .logo:hover{opacity:.75;}
@@ -222,14 +223,15 @@ header#top{
 
 /* ---------- MARQUEE ---------- */
 .marquee{
-  background:var(--brick); color:var(--cream);
+  background:var(--gold-tint); color:var(--navy);
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
   overflow:hidden; white-space:nowrap;
   padding:.75rem 0;
 }
 .marquee-track{display:inline-block; animation:scroll 22s linear infinite;}
 .marquee:hover .marquee-track{animation-play-state:paused;}
 .marquee-track span{font-family:'Fraunces', serif; font-size:1rem; padding:0 .6rem; text-transform:uppercase; letter-spacing:.08em;}
-.marquee-track .n{color:var(--gold-light);}
+.marquee-track .n{color:var(--brick);}
 @keyframes scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
 
 /* ---------- REVEAL ---------- */
